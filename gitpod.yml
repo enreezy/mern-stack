@@ -1,0 +1,5 @@
+ports:
+    - port: 5000
+      onOpen: ignore
+tasks:
+    - command: npm run server
