@@ -22,6 +22,8 @@ export default function(state = initialState, action) {
                 items: state.items.filter(item => item.id !== action.payload)
             };
         case ADD_ITEM:
+            console.log(action.type);
+            console.log(action.payload);
             return {
                 ...state,
                 items: [action.payload, ...state.items]
