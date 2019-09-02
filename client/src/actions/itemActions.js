@@ -3,7 +3,7 @@ import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from './types';
 
 export const getItems = () => dispatch => {
     dispatch(setItemsLoading());
-    axios.get('https://5000-bc3f1b50-c9c0-4927-99d2-ae671c87a1dd.ws-ap0.gitpod.io/api/items')
+    axios.get('https://5000-ab8daa5a-00c3-4245-9b3f-d3b9ef1f880d.ws-ap0.gitpod.io/api/items')
         .then(res => dispatch({
             type: GET_ITEMS,
             payload: res.data
@@ -13,8 +13,9 @@ export const getItems = () => dispatch => {
 
 
 export const addItem = item => dispatch => {
+    console.log(item);
     axios
-        .post('https://5000-bc3f1b50-c9c0-4927-99d2-ae671c87a1dd.ws-ap0.gitpod.io/api/items', item)
+        .post('https://5000-ab8daa5a-00c3-4245-9b3f-d3b9ef1f880d.ws-ap0.gitpod.io/api/items', item)
             .then(res =>
                 dispatch({
                     type: ADD_ITEM,
@@ -24,11 +25,13 @@ export const addItem = item => dispatch => {
 
 }
 
-export const deleteItem = id => {
-    return {
-        type: DELETE_ITEM,
-        payload: id
-    };
+export const deleteItem = id => dispatch => {
+    axios.delete(`https://5000-ab8daa5a-00c3-4245-9b3f-d3b9ef1f880d.ws-ap0.gitpod.io/api/items/${id}`).then(res =>
+        dispatch({
+            type: DELETE_ITEM,
+            payload: res.data
+        })
+    )
 }
 
 
